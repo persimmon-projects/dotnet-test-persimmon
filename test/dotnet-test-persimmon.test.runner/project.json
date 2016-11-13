@@ -1,0 +1,44 @@
+{
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "compilerName": "fsc",
+    "compile": {
+      "includeFiles": [
+        "./Program.fs"
+      ]
+    }
+  },
+  "tools": {
+    "dotnet-compile-fsc": {
+      "version": "1.0.0-preview2-*",
+      "imports": [
+        "dnxcore50",
+        "portable-net45+win81",
+        "netstandard1.3"
+      ]
+    }
+  },
+  "dependencies": {
+    "dotnet-test-persimmon": {
+      "target": "project"
+    },
+    "dotnet-test-persimmon.test": {
+      "target": "project"
+    },
+    "FSharp.Core": "4.0.1.7-alpha",
+    "Persimmon.Runner": "2.0.1-alpha3"
+  },
+  "frameworks": {
+    "net451": {
+    },
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0",
+          "type": "platform"
+        },
+        "System.Console": "4.0.0"
+      }
+    }
+  }
+}

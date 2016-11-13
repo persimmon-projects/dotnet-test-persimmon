@@ -1,0 +1,23 @@
+
+
+GROUP Build
+NUGET
+  remote: http://api.nuget.org/v3/index.json
+    FAKE (4.45.1)
+    FAKE.Lib (4.45.1)
+    FAKE.Persimmon (1.0.4)
+      FAKE.Lib (>= 4.1)
+      Persimmon.Console (>= 1.0.2)
+    Microsoft.Bcl (1.1.10) - framework: net10, net11, net20, net30, net35, net40, net40-full
+      Microsoft.Bcl.Build (>= 1.0.14)
+    Microsoft.Bcl.Build (1.0.21) - import_targets: false, framework: net10, net11, net20, net30, net35, net40, net40-full
+    Microsoft.Net.Http (2.2.29) - framework: net10, net11, net20, net30, net35, net40, net40-full
+      Microsoft.Bcl (>= 1.1.10)
+      Microsoft.Bcl.Build (>= 1.0.14)
+    Octokit (0.23)
+      Microsoft.Net.Http  - framework: net10, net11, net20, net30, net35, net40, net40-full
+    Persimmon.Console (2.0.1-alpha3)
+GITHUB
+  remote: fsharp/FAKE
+    modules/Octokit/Octokit.fsx (f367c3d28b1fc9a2a89636c2b870dea4b4559dca)
+      Octokit (>= 0.20)

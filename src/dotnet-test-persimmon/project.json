@@ -1,0 +1,38 @@
+{
+  "version": "0.1.0",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+  "packOptions": {
+    "requireLicenseAcceptance": false,
+    "tags": [
+      "testing",
+      "F#",
+      "dotnet",
+      "core",
+      "fsharp"
+    ],
+    "iconUrl": "https://raw.githubusercontent.com/persimmon-projects/Persimmon.Materials/master/StandardIcons/persimmon_128.png",
+    "licenseUrl": "https://raw.githubusercontent.com/persimmon-projects/dotnet-test-persimmon/master/LICENSE",
+    "projectUrl": "https://github.com/persimmon-projects/dotnet-test-persimmon",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/persimmon-projects/dotnet-test-persimmon"
+    }
+  },
+  "dependencies": {
+    "Microsoft.Extensions.Testing.Abstractions": "1.0.0-preview2-003121"
+  },
+  "frameworks": {
+    "net451": {},
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0",
+          "type": "platform"
+        },
+        "System.Runtime.Loader": "4.0.0"
+      }
+    }
+  }
+}
