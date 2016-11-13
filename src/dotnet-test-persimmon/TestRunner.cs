@@ -50,8 +50,9 @@ namespace Persimmon.Runner
             {
                 return Execute(Args.Parse(args));
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 return -1;
             }
         }
