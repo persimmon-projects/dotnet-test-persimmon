@@ -19,7 +19,7 @@ namespace Persimmon.Runner
         public IEnumerable<TestCaseWrapper> CollectTests()
         {
             var collector = CreateObject("Persimmon.Internals.TestCollector", library);
-            var tests = ExecuteMethod(collector, "CollectOnlyTestCases") as IEnumerable<object>;
+            var tests = ExecuteMethod(collector, "CollectOnlyTestCases", target) as IEnumerable<object>;
             return tests.Select(t => new TestCaseWrapper(t));
         }
 
