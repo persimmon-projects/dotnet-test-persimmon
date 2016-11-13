@@ -1,3 +1,6 @@
+### 0.1.0-alpha4 - November 13 2016
+* avoid AmbiguousMatchException
+
 ### 0.1.0-alpha3 - November 13 2016
 * fix call error
 
