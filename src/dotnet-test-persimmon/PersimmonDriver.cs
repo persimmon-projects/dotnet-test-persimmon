@@ -26,7 +26,7 @@ namespace Persimmon.Runner
         public void RunTests(string[] fullyQualifiedTestNames, Action<object> before, Action<object> callback)
         {
             var collector = CreateObject("Persimmon.Internals.TestRunner", library);
-            ExecuteMethod(collector, "RunTestsAndCallback", target, fullyQualifiedTestNames, before, callback);
+            ExecuteMethod(collector, "RunTestsAndCallback", new[] { typeof(Assembly), typeof(string[]), typeof(Action<object>), typeof(Action<object>) }, target, fullyQualifiedTestNames, before, callback);
         }
 
         private static object CreateObject(string typeName, Assembly library, params object[] args)
@@ -42,6 +42,12 @@ namespace Persimmon.Runner
         private object ExecuteMethod(object instance, string methodName, params object[] args)
         {
             var method = instance.GetType().GetMethod(methodName, BindingFlags.Public | BindingFlags.Instance);
+            return ExecuteMethod(instance, method, args);
+        }
+
+        private object ExecuteMethod(object instance, string methodName, Type[] ptypes, params object[] args)
+        {
+            var method = instance.GetType().GetMethod(methodName, ptypes);
             return ExecuteMethod(instance, method, args);
         }
 
