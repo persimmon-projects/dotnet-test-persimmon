@@ -9,12 +9,12 @@ let project = "dotnet-test-persimmon"
 
 let outDir = "bin"
 
-let gitOwner = "pocketberserker"
+let gitOwner = "persimmon-projects"
 let gitHome = "https://github.com/" + gitOwner
 
 let gitName = "dotnet-test-persimmon"
 
-let gitRaw = environVarOrDefault "gitRaw" "https://raw.github.com/pocketberserker"
+let gitRaw = environVarOrDefault "gitRaw" "https://raw.github.com/persimmon-projects"
 
 let release = LoadReleaseNotes "RELEASE_NOTES.md"
 
