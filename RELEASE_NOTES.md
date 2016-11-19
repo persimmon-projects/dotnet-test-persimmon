@@ -1,3 +1,6 @@
+### 0.1.0-alpha5 - November 19 2016
+* fix protocol messages
+
 ### 0.1.0-alpha4 - November 13 2016
 * avoid AmbiguousMatchException
 
