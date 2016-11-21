@@ -1,3 +1,7 @@
+### 0.1.0-alpha6 - November 21 2016
+* copy display name
+* filter test
+
 ### 0.1.0-alpha5 - November 19 2016
 * fix protocol messages
 
