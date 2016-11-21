@@ -29,6 +29,7 @@ namespace Persimmon.Runner
             {
                 var result = new TestResult(testCase.Test)
                 {
+                    DisplayName = testCase.Test.DisplayName,
                     Duration = testResult.Duration
                 };
                 Exception[] exns = Exceptions;
