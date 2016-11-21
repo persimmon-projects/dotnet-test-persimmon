@@ -27,9 +27,21 @@
     "Microsoft.Extensions.DependencyModel": "1.0.0"
   },
   "frameworks": {
-    "net451": {},
-    "net46": {},
-    "net461": {},
+    "net451": {
+      "dependencies": {
+        "Microsoft.NETCore.Platforms": "1.0.1"
+      }
+    },
+    "net46": {
+      "dependencies": {
+        "Microsoft.NETCore.Platforms": "1.0.1"
+      }
+    },
+    "net461": {
+      "dependencies": {
+        "Microsoft.NETCore.Platforms": "1.0.1"
+      }
+    },
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
