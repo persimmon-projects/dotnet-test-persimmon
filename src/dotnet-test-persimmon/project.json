@@ -1,7 +1,9 @@
 {
   "version": "0.1.0-alpha6",
   "buildOptions": {
-    "emitEntryPoint": true
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true,
+    "warningsAsErrors": true
   },
   "packOptions": {
     "requireLicenseAcceptance": false,

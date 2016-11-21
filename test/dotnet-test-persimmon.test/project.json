@@ -1,5 +1,7 @@
 {
   "buildOptions": {
+    "preserveCompilationContext": true,
+    "warningsAsErrors": true,
     "compilerName": "fsc",
     "compile": {
       "includeFiles": [
