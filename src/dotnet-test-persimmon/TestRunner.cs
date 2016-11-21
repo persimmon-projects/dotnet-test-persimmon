@@ -59,7 +59,7 @@ namespace Persimmon.Runner
 
         int Execute(Args args)
         {
-            SetupSinks(args);
+            var designTimeFullyQualifiedNames = SetupSinks(args);
 
             var results = new List<TestResultWrapper>();
 
@@ -72,6 +72,11 @@ namespace Persimmon.Runner
 
                 var driver = new PersimmonDriver(library, testAssembly);
                 var tests = driver.CollectTests();
+
+                if(args.DesignTime && designTimeFullyQualifiedNames.Any())
+                {
+                    tests = tests.Where(t => designTimeFullyQualifiedNames.Contains(t.Test.FullyQualifiedName));
+                }
 
                 if (args.List)
                 {
