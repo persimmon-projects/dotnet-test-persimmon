@@ -24,24 +24,41 @@
 using System;
 using System.IO;
 using Microsoft.Extensions.Testing.Abstractions;
+using System.Collections.Concurrent;
 
 namespace Persimmon.Runner.Sinks
 {
     public class RemoteTestExecutionSink : RemoteTestSink, ITestExecutionSink
     {
+        private readonly ConcurrentDictionary<string, DateTimeOffset> runningTests;
+
         public RemoteTestExecutionSink(BinaryWriter binaryWriter) : base(binaryWriter)
         {
+            runningTests = new ConcurrentDictionary<string, DateTimeOffset>();
         }
 
         public void SendTestStarted(Test test)
         {
             if (test == null) throw new ArgumentNullException(nameof(test));
+            runningTests.TryAdd(test.FullyQualifiedName, DateTimeOffset.Now);
             SendMessage(Messages.TestStarted, test);
         }
 
         public void SendTestResult(TestResult testResult)
         {
             if (testResult == null) throw new ArgumentNullException(nameof(testResult));
+
+            DateTimeOffset startTime;
+            runningTests.TryRemove(testResult.Test.FullyQualifiedName, out startTime);
+            if(testResult.StartTime == default(DateTimeOffset))
+            {
+                testResult.StartTime = startTime;
+            }
+            if(testResult.EndTime == default(DateTimeOffset))
+            {
+                testResult.EndTime = DateTimeOffset.Now;
+            }
+
             SendMessage(Messages.TestResult, testResult);
         }
     }
