@@ -73,18 +73,17 @@ namespace Persimmon.Runner
                 var driver = new PersimmonDriver(library, testAssembly);
                 var tests = driver.CollectTests();
 
+                if(args.DesignTime && designTimeFullyQualifiedNames.Any())
+                {
+                    tests = tests.Where(t => designTimeFullyQualifiedNames.Contains(t.Test.FullyQualifiedName));
+                }
+
                 if (args.List)
                 {
                     foreach (var test in tests) testDiscoverySink.SendTestFound(test.Test);
                 }
                 else
                 {
-
-                    if (args.DesignTime && designTimeFullyQualifiedNames.Any())
-                    {
-                        tests = tests.Where(t => designTimeFullyQualifiedNames.Contains(t.Test.FullyQualifiedName));
-                    }
-
                     Action<object> before = testCase =>
                     {
                         if (args.DesignTime)
