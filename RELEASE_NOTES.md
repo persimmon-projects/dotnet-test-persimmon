@@ -1,3 +1,7 @@
+### 0.1.0-alpha8 - November 22 2016
+* fix test filter
+* report start time and end time
+
 ### 0.1.0-alpha7 - November 22 2016
 * fix dependencies
 
