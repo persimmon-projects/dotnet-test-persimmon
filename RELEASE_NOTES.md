@@ -1,3 +1,6 @@
+### 0.1.0-alpha7 - November 22 2016
+* fix dependencies
+
 ### 0.1.0-alpha6 - November 21 2016
 * copy display name
 * filter test
