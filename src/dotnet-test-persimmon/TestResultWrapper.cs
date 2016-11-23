@@ -33,7 +33,8 @@ namespace Persimmon.Runner
                 {
                     DisplayName = testCase.Test.DisplayName,
                     Duration = testResult.Duration,
-                    EndTime = endTime
+                    EndTime = endTime,
+                    ComputerName = Environment.MachineName
                 };
                 Exception[] exns = Exceptions;
                 string[] failures = testResult.FailureMessages;
