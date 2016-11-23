@@ -1,3 +1,7 @@
+### 0.1.0-alpha9 - November 23 2016
+* revert a8871cd
+* add color console
+
 ### 0.1.0-alpha8 - November 22 2016
 * fix test filter
 * report start time and end time
