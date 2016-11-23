@@ -16,10 +16,9 @@ Add dependency `dotnet-test-persimmon` and `"testRunner": "persimmon"`.
     "Persimmon": "2.0.1-beta5",
     "dotnet-test-persimmon": "1.0.0-beta1"
   },
-  "testRunner": "nunit",
+  "testRunner": "persimmon",
   "frameworks": {
     "netcoreapp1.0": {
-      "imports": "portable-net45+win8",
       "dependencies": {
         "Microsoft.NETCore.App": {
           "version": "1.0.0-*",
