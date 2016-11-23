@@ -6,20 +6,15 @@ using System.Linq;
 
 namespace Persimmon.Runner
 {
-    public class Reporter: IDisposable
+    public class Reporter
     {
         private List<TestResultWrapper> results;
-        private TextWriter writer;
+        private ColorConsoleWriter writer;
 
-        public Reporter(List<TestResultWrapper> results, TextWriter writer)
+        public Reporter(List<TestResultWrapper> results, ColorConsoleWriter writer)
         {
             this.results = results;
             this.writer = writer;
-        }
-
-        public void Dispose()
-        {
-            writer.Dispose();
         }
 
         public void Report()
@@ -41,7 +36,7 @@ namespace Persimmon.Runner
                         break;
                     case TestOutcome.Skipped:
                         skipped++;
-                        writer.WriteLine(string.Format("Skipped: {0}", r.DisplayName));
+                        writer.WriteLine(ColorStyle.Warning, string.Format("Skipped: {0}", r.DisplayName));
                         break;
                 }
                 writer.WriteLine();
@@ -62,20 +57,20 @@ namespace Persimmon.Runner
             var r = result.TestResult;
             if (result.Exceptions.Any())
             {
-                writer.WriteLine(string.Format("FATAL ERROR: {0}", r.DisplayName));
+                writer.WriteLine(ColorStyle.Error, string.Format("FATAL ERROR: {0}", r.DisplayName));
             }
             else
             {
-                writer.WriteLine(string.Format("Violated: {0}", r.DisplayName));
+                writer.WriteLine(ColorStyle.Failure, string.Format("Violated: {0}", r.DisplayName));
             }
             foreach(var msg in r.Messages)
             {
-                writer.WriteLine(msg);
+                writer.WriteLine(ColorStyle.Failure, msg);
             }
             writer.WriteLine();
             foreach(var e in result.Exceptions)
             {
-                writer.WriteLine(e.StackTrace);
+                writer.WriteLine(ColorStyle.Error, e.StackTrace);
             }
         }
     }

@@ -5,7 +5,9 @@
     "compilerName": "fsc",
     "compile": {
       "includeFiles": [
-        "./SinkTest.fs"
+        "./SinkTest.fs",
+        "./ColorStyleTest.fs",
+        "./ColorConsoleTest.fs"
       ]
     }
   },

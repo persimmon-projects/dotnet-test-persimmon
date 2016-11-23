@@ -42,13 +42,21 @@ namespace Persimmon.Runner
         private ITestExecutionSink testExecutionSink;
         private Socket socket;
 
-        public TestRunner() { }
+        private Args args;
 
-        public int Run(string[] args)
+        Lazy<ColorConsoleWriter> console;
+        ColorConsoleWriter ColorConsole => console.Value;
+
+        public TestRunner() {
+            console = new Lazy<ColorConsoleWriter>(() => new ColorConsoleWriter(!args.NoColor));
+        }
+
+        public int Run(string[] rawArgs)
         {
             try
             {
-                return Execute(Args.Parse(args));
+                args = Args.Parse(rawArgs);
+                return Execute();
             }
             catch (Exception ex)
             {
@@ -57,7 +65,7 @@ namespace Persimmon.Runner
             }
         }
 
-        int Execute(Args args)
+        int Execute()
         {
             var designTimeFullyQualifiedNames = SetupSinks(args);
 
@@ -134,10 +142,8 @@ namespace Persimmon.Runner
                 return 0;
             }
 
-            using (var reporter = new Reporter(results, Console.Out))
-            {
-                reporter.Report();
-            }
+            var reporter = new Reporter(results, ColorConsole);
+            reporter.Report();
 
             return results.Where(r => r.TestResult.Outcome == TestOutcome.Failed).Count();
         }
@@ -145,6 +151,7 @@ namespace Persimmon.Runner
         public void Dispose()
         {
             socket?.Dispose();
+            ColorConsole.Dispose();
         }
 
         Assembly LoadAssembly(string fileName)

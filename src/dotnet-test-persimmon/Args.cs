@@ -17,6 +17,8 @@ namespace Persimmon.Runner
 
         public bool List { get; private set; }
 
+        public bool NoColor { get; private set; }
+
         public static Args Parse(string[] rawArgs)
         {
             var args = new Args();
@@ -31,6 +33,9 @@ namespace Persimmon.Runner
                         break;
                     case "--designtime":
                         args.DesignTime = true;
+                        break;
+                    case "--no-color":
+                        args.NoColor = true;
                         break;
                     case "--wait-command":
                         args.WaitCommand = true;
