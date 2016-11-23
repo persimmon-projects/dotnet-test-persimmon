@@ -8,11 +8,13 @@ namespace Persimmon.Runner
     {
         private readonly dynamic testResult;
         private readonly TestCaseWrapper testCase;
+        private readonly DateTimeOffset endTime;
 
         public TestResultWrapper(object testResult)
         {
             this.testResult = testResult;
             testCase = new TestCaseWrapper(this.testResult.TestCase);
+            endTime = DateTimeOffset.Now;
         }
 
         public Exception[] Exceptions
@@ -30,7 +32,8 @@ namespace Persimmon.Runner
                 var result = new TestResult(testCase.Test)
                 {
                     DisplayName = testCase.Test.DisplayName,
-                    Duration = testResult.Duration
+                    Duration = testResult.Duration,
+                    EndTime = endTime
                 };
                 Exception[] exns = Exceptions;
                 string[] failures = testResult.FailureMessages;

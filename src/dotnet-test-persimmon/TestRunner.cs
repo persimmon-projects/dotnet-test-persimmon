@@ -102,11 +102,13 @@ namespace Persimmon.Runner
                     Action<object> progress = result =>
                     {
                         var wrapper = new TestResultWrapper(result);
-                        if (args.DesignTime)
-                        {
-                            testExecutionSink.SendTestResult(wrapper.TestResult);
-                        }
-                        else
+                        // TODO: send async
+                        //if (args.DesignTime)
+                        //{
+                        //    testExecutionSink.SendTestResult(wrapper.TestResult);
+                        //}
+                        //else
+                        if (!args.DesignTime)
                         {
                             switch (wrapper.TestResult.Outcome)
                             {
@@ -127,6 +129,15 @@ namespace Persimmon.Runner
                         results.Add(wrapper);
                     };
                     driver.RunTests(tests.Select(t => t.Test.FullyQualifiedName).ToArray(), before, progress);
+                }
+            }
+
+            // TODO: remove after implement `send async`
+            if (args.DesignTime)
+            {
+                foreach(var wrapper in results)
+                {
+                    testExecutionSink.SendTestResult(wrapper.TestResult);
                 }
             }
 
