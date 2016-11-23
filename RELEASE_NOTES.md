@@ -1,3 +1,7 @@
+### 1.0.0-beta1 - November 23 2016
+* fix send test result error
+* add computer name
+
 ### 0.1.0-alpha9 - November 23 2016
 * revert a8871cd
 * add color console
