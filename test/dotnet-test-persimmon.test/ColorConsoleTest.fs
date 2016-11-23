@@ -18,7 +18,13 @@ let constructor = test {
 
     let expected = ColorConsole.GetColor(testStyle)
     use _ = new ColorConsole(testStyle)
-    do! assertEquals expected Console.ForegroundColor
+    do!
+      assertEquals expected Console.ForegroundColor
+      |> (
+        // FIXME
+        if String.IsNullOrEmpty(Environment.GetEnvironmentVariable("APPVEYOR")) then id
+        else ignoreResult "Appveyor can not change console color."
+      )
 
   finally Console.ResetColor()
 }
